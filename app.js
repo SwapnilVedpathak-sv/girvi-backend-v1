@@ -6,7 +6,8 @@ const dotenv = require("dotenv");
 const app = express();
 const port = process.env.PORT || 3000;
 const dbURI = `mongodb+srv://codeimplants:oll9ZV8dt8AzhTuR@girvi-v1.igakn2y.mongodb.net/girvi-v1`;
-
+const routerUser = require("./api/routers/user");
+const routerLoan = require("./api/routers/loan")
 const authentication = require("./api/auth/authentication");
 // const contact = require("./api/Contacts/contact-api");
 
@@ -15,6 +16,8 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(cors());
 dotenv.config();
+app.use(routerUser)
+app.use(routerLoan)
 
 mongoose
     .connect(dbURI)
@@ -28,4 +31,4 @@ mongoose
 
 // Routes
 app.use("/", authentication);
-// app.use("/", contact);
+// app.use("/", contact);v
